@@ -3,12 +3,12 @@ package transport
 import (
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/schema"
 	_ "github.com/lib/pq"
 	log "github.com/sirupsen/logrus"
 	"net/http"
-	"os"
 )
 
 type Post  struct {
@@ -17,15 +17,15 @@ type Post  struct {
 	PostDate string `json:"postDate"`
 }
 const(
-	host = "localhost"
+	host = "ec2-63-33-14-215.eu-west-1.compute.amazonaws.com"
 	port = "5432"
-	user = "postgres"
-	password = "password"
-	dbname = "blog"
+	user = "efqfutmrzzunvf"
+	password = "d9fbc191dd683c84603b840e4cd07b2ae93dcf4af8959a4230f2a5e0ccf1b1a0"
+	dbname = "d4obgiuuk72amd"
 )
 func openConnection() *sql.DB {
-	//psqlConnStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port,user,password,dbname)
-	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+	psqlConnStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require", host, port,user,password,dbname)
+	db, err := sql.Open("postgres", psqlConnStr)
 	if err != nil {
 		panic(err)
 	}
