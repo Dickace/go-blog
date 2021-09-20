@@ -22,7 +22,7 @@ const(
 //	dbname = "blog"
 //)
 func OpenConnection()  {
-	psqlConnStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port,user,password,dbname)
+	psqlConnStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require", host, port,user,password,dbname)
 
 	db, err := gorm.Open("postgres",psqlConnStr )
 	if err!= nil{
