@@ -3,12 +3,12 @@ package transport
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/schema"
 	_ "github.com/lib/pq"
 	log "github.com/sirupsen/logrus"
 	"net/http"
+	"os"
 )
 
 type Post  struct {
@@ -24,8 +24,8 @@ const(
 	dbname = "blog"
 )
 func openConnection() *sql.DB {
-	psqlConnStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port,user,password,dbname)
-	db, err := sql.Open("postgres", psqlConnStr)
+	//psqlConnStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port,user,password,dbname)
+	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	if err != nil {
 		panic(err)
 	}
