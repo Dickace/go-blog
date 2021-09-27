@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"awesomeProject/models"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -10,7 +9,6 @@ import (
 func GetPosts(c *gin.Context){
 	var posts []models.Post
 	models.DB.Find(&posts)
-	fmt.Print(posts[0])
 	c.JSON(http.StatusOK,gin.H{"data":posts})
 }
 func GetPost(c *gin.Context){
@@ -40,7 +38,7 @@ func EditPost(c *gin.Context){
 func DeletePost(c *gin.Context){
 	var post models.Post
 	if err:= models.DB.Where("id = ?", c.Param("id")).First(&post).Error;err!=nil{
-		c.JSON(http.StatusBadRequest, gin.H{"error":"record not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error":"post not found"})
 		return
 	}
 	models.DB.Delete(&post)
@@ -48,11 +46,29 @@ func DeletePost(c *gin.Context){
 }
 func AddPost(c *gin.Context){
 	var input models.CreatePost
+
 	if err:= c.ShouldBindJSON(&input); err!=nil{
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	post := models.Post{Title: input.Title, PostDate: input.PostDate}
 	models.DB.Create(&post)
+	c.JSON(http.StatusOK, gin.H{"data": post})
+}
+func Favorite(c *gin.Context){
+	var post models.Post
+
+	if err:= models.DB.Where("id = ?", c.Param("id")).First(&post).Error; err!=nil{
+		c.JSON(http.StatusBadRequest, gin.H{"error":"post not found"})
+	}
+	if !post.IsFavorite {
+		models.DB.Model(&post).Updates(map[string]interface{}{
+			"IsFavorite": true,
+		})
+	} else {
+		models.DB.Model(&post).Updates(map[string]interface{}{
+			"IsFavorite": false,
+		})
+	}
 	c.JSON(http.StatusOK, gin.H{"data": post})
 }
