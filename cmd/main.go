@@ -21,5 +21,6 @@ func main() {
 	r.PATCH("/api/v1/posts/:id", controllers.EditPost)
 	r.DELETE("/api/v1/posts/:id", controllers.DeletePost)
 	r.PUT("/api/v1/posts/:id/favorite", controllers.Favorite)
-	r.Run(":8001")
+	r.Run()
+	//r.Run(":8001")
 }
