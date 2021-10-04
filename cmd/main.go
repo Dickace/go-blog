@@ -11,7 +11,9 @@ func main() {
 
 	r := gin.Default()
 
-	r.Use(cors.Default())
+	r.Use(cors.New(cors.Options{
+		AllowedMethods: []string{"GET", "POST", "DELETE", "PATCH", "PUT"},
+	}))
 
 	models.OpenConnection()
 
