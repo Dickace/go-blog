@@ -2,7 +2,6 @@ package models
 
 import (
 	_ "github.com/jinzhu/gorm"
-	"time"
 )
 type Telemetry struct {
 	ID uint `json:"id" gorm:"primary_key"`
