@@ -13,8 +13,8 @@ type Telemetry struct {
 	AY int `json: "aY"`
 	AZ int `json: "aZ"`
 	RSSI_dBm int `json: "RSSI_dBm"`
-	Latitude double `json: "latitude"`
-	Longitude double `json: "longitude"`
+	Latitude float32 `json: "latitude"`
+	Longitude float32 `json: "longitude"`
 	GNSS_data_valid uint `json: "GNSS_data_valid"`
 }
 type CreatePost struct {
@@ -25,7 +25,7 @@ type CreatePost struct {
 	AY int `json: "aY"`
 	AZ int `json: "aZ"`
 	RSSI_dBm int `json: "RSSI_dBm"`
-	Latitude double `json: "latitude"`
-	Longitude double `json: "longitude"`
+	Latitude float32 `json: "latitude"`
+	Longitude float32 `json: "longitude"`
 	GNSS_data_valid uint `json: "GNSS_data_valid"`
 }
