@@ -16,7 +16,7 @@ type Telemetry struct {
 	Longitude float32 `json: "longitude"`
 	GNSS_data_valid uint `json: "GNSS_data_valid"`
 }
-type CreatePost struct {
+type CreateTelemetry struct {
 	Interface string `json:"interface"`
 	ICCID string `json: "ICCID"`
 	Tamb_degC int `json: "Tamb_degC"`
