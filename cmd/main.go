@@ -23,8 +23,8 @@ func main() {
 	r.PATCH("/api/v1/posts/:id", controllers.EditPost)
 	r.DELETE("/api/v1/posts/:id", controllers.DeletePost)
 	r.PUT("/api/v1/posts/:id/favorite", controllers.Favorite)
-	r.POST("/api/v1/telemetry", controllers.AddTelemtery)
-	r.GET("/api/v1/getTelemetry", controllers.GetTelemetry)
+	r.POST("/api/v1/telemetry", controllers.AddTelemtry)
+	r.GET("/api/v1/getTelemetry", controllers.GetTelemetries)
 	r.Run()
 	//r.Run(":8001")
 }
