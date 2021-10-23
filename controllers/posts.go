@@ -12,7 +12,7 @@ func AddTelemetry(c *gin.Context){
 		c.JSON(http.StatusBadRequest, gin.H{"error":err.Error()})
 		return
 	}
-	telemtry := models.Telemetry{Interface: input.nterface, ICCID: input.ICCID, Tamb_degC = input.Tamb_degC, AX = input.AX ,AY = input.AY, AZ = input.AZ,  RSSI_dBm = input.RSSI_dBm, Latitude= input.Latitude, Longitude = input.Longitude, GNSS_data_valid = input.GNSS_data_valid }
+	telemtry := models.Telemetry{Interface: input.nterface, ICCID: input.ICCID, Tamb_degC: input.Tamb_degC, AX: input.AX ,AY: input.AY, AZ: input.AZ,  RSSI_dBm: input.RSSI_dBm, Latitude: input.Latitude, Longitude: input.Longitude, GNSS_data_valid: input.GNSS_data_valid }
 	models.DB.Create(&telemtry)
 	c.JSON(http.StatusOK, gin.H{"data": telemtry})
 }
