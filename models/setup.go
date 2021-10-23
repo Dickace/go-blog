@@ -31,6 +31,6 @@ func OpenConnection() {
 		panic(err)
 	}
 	db.AutoMigrate(&Post{})
-
+	db.AutoMigrate(&Telemetry{})
 	DB = db
 }

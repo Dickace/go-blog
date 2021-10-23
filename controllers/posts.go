@@ -6,6 +6,23 @@ import (
 	"net/http"
 )
 
+func AddTelemetry(c *gin.Context){
+	var input models.CreateTelemetry
+	if err:= c.ShouldBindJSON(&input); err!=nil{
+		c.JSON(http.StatusBadRequest, gin.H{"error":err.Error()})
+		return
+	}
+	telemtry := models.Telemetry{Interface: input.nterface, ICCID: input.ICCID, Tamb_degC = input.Tamb_degC, AX = input.AX ,AY = input.AY, AZ = input.AZ,  RSSI_dBm = input.RSSI_dBm, Latitude= input.Latitude, Longitude = input.Longitude, GNSS_data_valid = input.GNSS_data_valid }
+	models.DB.Create(&telemtry)
+	c.JSON(http.StatusOK, gin.H{"data": telemtry})
+}
+
+func GetTelemetries(c *gin.Context){
+	var telemtries []models.Telemetry
+	models.DB.Find(&telemtries)
+	c.JSON(http.StatusOK, gin.H{"data": telemtries})
+}
+
 func GetPosts(c *gin.Context){
 	var posts []models.Post
 	models.DB.Find(&posts)
