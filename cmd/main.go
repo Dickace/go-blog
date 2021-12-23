@@ -1,13 +1,24 @@
 package main
 
 import (
+	"awesomeProject/consumer"
 	"awesomeProject/controllers"
 	"awesomeProject/models"
+	"awesomeProject/rabbitmq"
 	"github.com/gin-gonic/gin"
 	cors "github.com/rs/cors/wrapper/gin"
 )
 
 func main() {
+
+	rabbitmq.RabbitmqInit()
+
+	consumer.AddPost()
+	consumer.AddPost()
+	consumer.AddPost()
+	consumer.DeletePost()
+	consumer.FavoritePost()
+	consumer.UpdatePost()
 
 	r := gin.Default()
 
@@ -23,6 +34,6 @@ func main() {
 	r.PATCH("/api/v1/posts/:id", controllers.EditPost)
 	r.DELETE("/api/v1/posts/:id", controllers.DeletePost)
 	r.PUT("/api/v1/posts/:id/favorite", controllers.Favorite)
-	r.Run()
-	//r.Run(":8001")
+	r.Run(":8081")
+	//r.Run(":82")
 }
