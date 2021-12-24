@@ -24,7 +24,7 @@
     function send() {
 
         socket.send(JSON.stringify({
-            type: "message",
+            type: "mwf",
             text: input.value
             }));
         input.value = "";
