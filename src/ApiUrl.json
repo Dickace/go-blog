@@ -1,0 +1,4 @@
+{
+  "API_URL": "http://109.194.37.212:93",
+  "WS_URL": "ws://localhost:8002/ws"
+}

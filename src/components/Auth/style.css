@@ -1,0 +1,22 @@
+
+.css-1nylpq2{
+ justify-content: center;
+}
+.loginPage button{
+ width: 200px;
+ margin-top: 20px;
+ margin-left: auto;
+ margin-right: auto;
+}
+.loginPage {
+ height: 100vh;
+ display: flex;
+}
+.loginPage > div {
+ height: 300px;
+ width: 400px;
+margin: auto;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
